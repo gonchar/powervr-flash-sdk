@@ -320,7 +320,7 @@ package com.powervr.pod {
 						break;
 					case EPODIdentifiers.eMeshInteravedDataList | EPODDefines.startTagMask:
 
-						var data:Vector.<Number> = readByteArrayNumber(stream, tag.dataLength);
+						var data:Vector.<Number> = readByteArrayNumber(stream, tag.dataLength / 4);
 
 						interleavedDataIndex = mesh.addData(data);
 
@@ -922,7 +922,7 @@ package com.powervr.pod {
 		private static function readByteArrayNumber(stream:ByteArray, length:int):Vector.<Number> {
 			var result:Vector.<Number> = new Vector.<Number>();
 			for (var i:int = 0; i < length; i++) {
-				result.push(stream.readUnsignedByte());
+				result.push(stream.readFloat());
 			}
 			return result;
 		}
